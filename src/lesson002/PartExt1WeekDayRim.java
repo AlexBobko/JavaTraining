@@ -23,8 +23,10 @@ public class PartExt1WeekDayRim {
 							countThisMonthDay = 30;
 						} else if (numUlMonth == 2) {
 							countThisMonthDay = 27;
-							if ((numUlYear % 4 == 0) && ((numUlYear) % 1000 != 0))
-								countThisMonthDay++;
+							if ((numUlYear % 4 == 0) && ((numUlYear % 100 != 0)||(numUlYear % 400 == 0))){ 
+								countThisMonthDay = 28;
+								//System.out.println("високосный год " + countThisMonthDay);
+								 }
 						} else
 							countThisMonthDay = 31;
 						System.out.print("Введите число месяца (1-" + countThisMonthDay + "): ");

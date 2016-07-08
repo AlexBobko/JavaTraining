@@ -8,7 +8,7 @@ public class Part4VisYear {
 		System.out.print("Введите год для проверки: ");
 		if (comprYear.hasNextInt()) {
 			int y=comprYear.nextInt();
-			if ((y % 4 != 0)&&(y % 1000 == 0)) {
+			if ((y % 4 != 0)||((y % 100 == 0)&&(y % 400 != 0))) {
 				System.out.print(y + " - год не високостный");
 			} else {
 				System.out.print(y + " - год високостный");
