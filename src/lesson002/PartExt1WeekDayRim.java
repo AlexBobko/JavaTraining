@@ -43,7 +43,7 @@ public class PartExt1WeekDayRim {
 			}
 			System.out.println("Вы ввели не корректную дату, повторите ввод");
 		}
-		// convert Uliandate to Rimdate
+		// convert Gregorian to Rimdate
 		numUlMonth = numUlMonth - 2;
 		if (numUlMonth <= 0) {
 			numUlMonth = numUlMonth + 12;
