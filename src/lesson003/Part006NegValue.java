@@ -9,7 +9,7 @@ public class Part006NegValue {
 		int i = 0, countNegativValue = 0;
 		int[] myArray = new int[10];
 		for (; i < 10; i++) {
-			myArray[i] = random.nextInt();
+			myArray[i] = random.nextInt(100)-50;
 			if (myArray[i] < 0) {
 				countNegativValue++;
 			}

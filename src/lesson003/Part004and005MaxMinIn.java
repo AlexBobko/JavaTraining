@@ -9,7 +9,7 @@ public class Part004and005MaxMinIn {
 		int i = 0, min = 0, max = 0, minIndex=0, maxIndex=0;
 		int[] myArray = new int[15];
 		for (; i < 15; i++) {
-			myArray[i] = random.nextInt();
+			myArray[i] = random.nextInt(200)-100;
 			if (min == 0) {
 				min = myArray[i];
 			} else if (min > myArray[i]) {
