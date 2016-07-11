@@ -1,4 +1,4 @@
-//не доделаное еще
+//не доделаное еще not finished
 package lesson003;
 
 import java.util.Random;
