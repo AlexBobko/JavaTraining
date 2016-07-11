@@ -4,7 +4,7 @@ package lesson004;
 public class Part004DelWord {
 
 	public static void main(String[] args) {
-		String text = "Трямс. Все дело в том, что компилятор в указанном above example will not check the content itself of lines, а только ссылки на них. Простой пример. Следующий код выведет сообщение “Строки не совпадают";
+		String text = "ТЕкст для теста. Трямс. Все дело в том, что компилятор в указанном above example will not check the content itself of lines, а только ссылки на них. Простой пример. Следующий код выведет сообщение “Строки не совпадают";
 		String[] strArr= text.split(" ");
 		String str = new String();
 		System.out.println(text);

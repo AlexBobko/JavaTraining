@@ -14,7 +14,9 @@ public class Part6Rub {
 				rubCase=EnterCountRub%10;
 				System.out.println("Введено число: " + EnterCountRub +" остаток:" + rubCase);
 				if (rubCase == 1) {System.out.println("Получился: " + EnterCountRub +" рубль");}
+				else if ((11<EnterCountRub)&&(EnterCountRub < 20)) {System.out.println("Получилось: " + EnterCountRub +" рублей");}
 				else if ((1<rubCase)&&(rubCase < 5)) {System.out.println("Получилось: " + EnterCountRub +" рубля");}
+				
 				else System.out.println("Получилось: " + EnterCountRub +" рублей");
 				return;
 			}
