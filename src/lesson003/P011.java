@@ -1,3 +1,4 @@
+//не доделаное еще
 package lesson003;
 
 import java.util.Random;
