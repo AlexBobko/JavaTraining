@@ -45,8 +45,4 @@ public class Part004DelWord {
                 return true;
         }
     }
-    
-		
 }
-
-

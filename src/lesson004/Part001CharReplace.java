@@ -11,7 +11,7 @@ public class Part001CharReplace {
 		int k = 4; // будет заменен каждый k-ый символ
 		char firstChar;
 		String str = new String();
-		String str2 = "This method has two variants and returns a new string that is a substring of this string. The substring begins with the character at the specified index and extends to the end of this string or up to endIndex - 1 if second argument is given.";
+		String str2 = "This method has two (вставим русских букаф: раз, два, три) variants and returns a new string that is a substring of this string. The substring begins with the character at the specified index and extends to the end of this string or up to endIndex - 1 if second argument is given.";
 		String resultStr = new String();
 		Scanner sc = new Scanner(System.in);
 		k--;
@@ -19,17 +19,10 @@ public class Part001CharReplace {
 		str = sc.nextLine();
 		firstChar = str.charAt(0);
 		System.out.println(str);
-		String[] str2ToArray = str2.split(" "); //делим тектс на слова
+		String[] str2ToArray = str2.split(" "); // делим текст на слова
 		for (String value : str2ToArray) {
-			int length = value.length();
-			if (value.contains("."))
-				length--;
-			if (value.contains(","))
-				length--;
-			if (value.contains("?"))
-				length--;
-			if (value.contains("!"))
-				length--;			
+			String clearStr = value.replaceAll("[^a-zA-Zа-яА-ЯЁё]", ""); //удаляем из слова все кроме букв
+			int length = clearStr.length();
 			if (length > k) {
 				value = replaceCharAt(value, k, firstChar);
 			}
@@ -38,11 +31,7 @@ public class Part001CharReplace {
 		System.out.println(str2);
 		System.out.println(resultStr);
 	}
-
 	public static String replaceCharAt(String s, int pos, char c) {
-
 		return s.substring(0, pos) + c + s.substring(pos + 1);
-
 	}
-
 }
