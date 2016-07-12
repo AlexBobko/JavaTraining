@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Part001CharReplace {
 
 	public static void main(String[] args) {
-		int k = 4; // будет заменен каждый символ
+		int k = 4; // будет заменен каждый k-ый символ
 		char firstChar;
 		String str = new String();
 		String str2 = "This method has two variants and returns a new string that is a substring of this string. The substring begins with the character at the specified index and extends to the end of this string or up to endIndex - 1 if second argument is given.";
@@ -19,7 +19,7 @@ public class Part001CharReplace {
 		str = sc.nextLine();
 		firstChar = str.charAt(0);
 		System.out.println(str);
-		String[] str2ToArray = str2.split(" ");
+		String[] str2ToArray = str2.split(" "); //делим тектс на слова
 		for (String value : str2ToArray) {
 			int length = value.length();
 			if (value.contains("."))
@@ -29,7 +29,7 @@ public class Part001CharReplace {
 			if (value.contains("?"))
 				length--;
 			if (value.contains("!"))
-				length--;
+				length--;			
 			if (length > k) {
 				value = replaceCharAt(value, k, firstChar);
 			}
