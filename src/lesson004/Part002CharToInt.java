@@ -11,7 +11,7 @@ public class Part002CharToInt {
 		String alphabet = new String("abcdefghijklmnopqrstuvwxyz");
 		char[] alphabetArray = alphabet.toCharArray();
 		String newText = new String();
-		Formatter f = new Formatter();
+		//Formatter f = new Formatter();
 		boolean b;
 		String newIntText = new String();
 		String originalText = new String(
