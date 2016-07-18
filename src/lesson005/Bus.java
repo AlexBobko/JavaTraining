@@ -10,7 +10,8 @@
 package lesson005;
 
 public class Bus {
-	public static String [] header={}; //загнать сюда шапку
+	//шапка вывода
+	public static String header="ФИО водителя~номер автобуса~Номер маршрута~Марка~Год начала эксплуатации~Пробег, км~~"; 
 	private String busDriverName; // фио водителя
 	private int busNumber; // номер
 	private int busRoutingNumber; // номер маршрута
@@ -54,15 +55,31 @@ public class Bus {
 	@Override
 	public String toString() {
 		String str = new String();
+		str = str.concat ("type=").concat ("Bus").concat ("\n");
+		//str = str.concat (Bus.header.replace ('~', ' ')).concat ("\n");
+		str = str.concat(" busDriverName=").concat(this.busDriverName);
+		str = str.concat(" busNumber=").concat(Integer.toString(this.busNumber));
+		str = str.concat(" busRoutingNumber=").concat(Integer.toString(this.busRoutingNumber));
+		str = str.concat(" makeBus=").concat(this.makeBus);
+		str = str.concat(" yearBus=").concat(Integer.toString(this.yearBus));
+		str = str.concat(" mileageBus=").concat(Integer.toString(this.mileageBus));
+		str = str.concat("\n");
+		return str;
+	}
+	//форматируем под вывод true - добавить header
+	public String toString(boolean b) {
+		String str = new String();
+		if (b)str = str.concat(Bus.header);
 		str = str.concat(this.busDriverName).concat("~");
 		str = str.concat(Integer.toString(this.busNumber)).concat("~");
 		str = str.concat(Integer.toString(this.busRoutingNumber)).concat("~");
 		str = str.concat(this.makeBus).concat("~");
 		str = str.concat(Integer.toString(this.yearBus)).concat("~");
 		str = str.concat(Integer.toString(this.mileageBus)).concat("~");
-		// str = str.concat("~");
+		str = str.concat("~");
 		return str;
 	}
+	
 
 	public int getYearBus() {
 		return this.yearBus;

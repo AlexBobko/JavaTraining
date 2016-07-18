@@ -9,7 +9,7 @@ package lesson005;
 
 public class BusPark {
 	private Bus[] argsBus;
-
+	public static String header="ФИО водителя~номер автобуса~Номер маршрута~Марка~Год начала эксплуатации~Пробег, км~~";
 	public BusPark() {
 		
 	}
@@ -34,9 +34,20 @@ public class BusPark {
 	@Override
 	public String toString() {
 		String str = new String();
+		str = str.concat("type:BusPark\n");
 		for (Bus bus : this.argsBus) {
 			str = str.concat(bus.toString());
-			str = str.concat("~\n");
+			//str = str.concat("\n");
+		}
+		return str;
+	}
+	//форматируем под вывод true - добавить header
+	public String toString(boolean b) {
+		String str = new String();
+		if (b){str = str.concat(BusPark.header);}
+		for (Bus bus : this.argsBus) {
+			str = str.concat(bus.toString(false));
+			//str = str.concat("~~");
 		}
 		return str;
 	}
@@ -46,9 +57,10 @@ public class BusPark {
 
 	public String getBusToRout(int numberRout) {
 		String getBuses = new String();
+		getBuses = getBuses.concat(BusPark.header);
 		for (Bus bus : this.argsBus) {
 			if (bus.getBusRoutingNumber() == numberRout) {
-				getBuses = getBuses.concat(bus.toString());
+				getBuses = getBuses.concat(bus.toString(false));
 			}
 		}
 		return getBuses;
@@ -56,10 +68,11 @@ public class BusPark {
 
 	public String getExpirationDate(int numberYear) {
 		String getBuses = new String();
+		getBuses = getBuses.concat(BusPark.header);
 		int currenYear = Integer.valueOf((new java.util.Date().toString()).substring(24));
 		for (Bus bus : this.argsBus) {
 			if ((currenYear - bus.getYearBus()) > numberYear) {
-				getBuses = getBuses.concat(bus.toString());
+				getBuses = getBuses.concat(bus.toString(false));
 			}
 		}
 		return getBuses;
@@ -67,9 +80,10 @@ public class BusPark {
 
 	public String getExpirationMileage(int mileage) {
 		String getBuses = new String();
+		getBuses = getBuses.concat(BusPark.header);
 		for (Bus bus : this.argsBus) {
-			if (bus.getMileageBus() > mileage) {
-				getBuses = getBuses.concat(bus.toString());
+			if ((bus.getMileageBus()) > mileage) {
+				getBuses = getBuses.concat(bus.toString(false));
 			}
 		}
 		return getBuses;
