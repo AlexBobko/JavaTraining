@@ -66,7 +66,7 @@ public class Bus {
 		str = str.concat("\n");
 		return str;
 	}
-	//форматируем под вывод true - добавить header
+	//форматируем под вывод. true - добавить header
 	public String toString(boolean b) {
 		String str = new String();
 		if (b)str = str.concat(Bus.header);

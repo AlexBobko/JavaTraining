@@ -106,6 +106,7 @@ public class MainBus {
 
 	private static int menuBusToRout() {
 		int select = 0;
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("В основное меню - любой другой символ");
 		System.out.println("Задайте номер маршрута для которого требуется \nвывести список автобусов (1-5):");
@@ -120,6 +121,7 @@ public class MainBus {
 
 	private static int menuExpirationDate() {
 		int select = 0;
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("В основное меню - любой другой символ");
 		System.out.println("Задайте срок эксплуатации выше которого требуется \nвывести список автобусов, лет (1-20):");
@@ -134,6 +136,7 @@ public class MainBus {
 
 	private static int menuExpirationMileage() {
 		int select = 0;
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("В основное меню - любой другой символ");
 		System.out.println("Задайте пробег выше которого требуется \nвывести список автобусов, км (1-999999):");
