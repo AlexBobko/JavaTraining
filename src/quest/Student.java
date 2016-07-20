@@ -3,7 +3,7 @@ package quest;
 
 import java.io.*;
 
-public class Student implements Serializable{
+public class Student implements Serializable {
 	 int id;
 	 String name;
 	 String dateOfBirth;
