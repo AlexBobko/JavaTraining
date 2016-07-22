@@ -1,12 +1,11 @@
+package lesson005;
+
 /* объект Buses (массив объектов Bus с заданными методами выборки)  getBuses - возвращает массив Bus
 методы согласно условия задачи:
  * a) список автобусов для заданного номера маршрута; getBusToRout(int);
  * b) список автобусов, которые эксплуатируются больше заданного срока; getExpirationDate(int);
  * c) список автобусов, пробег у которых больше заданного расстояния. getExpirationMileage(int);
 */
-
-package lesson005;
-
 public class BusPark {
 	private Bus[] argsBus;
 	public static String header="ФИО водителя~номер автобуса~Номер маршрута~Марка~Год начала эксплуатации~Пробег, км~~";

@@ -1,3 +1,6 @@
+package lesson005;
+import java.io.PrintStream;
+import java.util.Scanner;
 /*Вариант А
 Создать классы, спецификации которых приведены ниже. 
 Определить конструкторы и методы setТип(), getТип(), toString(). 
@@ -15,11 +18,6 @@
 a) список автобусов для заданного номера маршрута;
 b) список автобусов, которые эксплуатируются больше заданного срока;
 c) список автобусов, пробег у которых больше заданного расстояния.*/
-package lesson005;
-
-import java.io.PrintStream;
-import java.util.Scanner;
-
 public class MainBus {
 	public static void main(String[] args) {
 		// забиваем начальные данные для создания массива объектов через тильду.
