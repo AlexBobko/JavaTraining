@@ -2,7 +2,7 @@
  * +Определить иерархию цветов. 
  * +Создать несколько объектов-цветов. 
  * +Собрать букет (используя аксессуары) с определением его стоимости. 
--Провести сортировку цветов в букете на основе уровня свежести. 
++Провести сортировку цветов в букете на основе уровня свежести. 
 +Найти цветок в букете, соответствующий заданному диапазону 
 длин стеблей.
  * 
@@ -83,7 +83,7 @@ public class MainFlowerGirl {
 			System.out.printf("%1$-25s|%2$-8s|%3$-5s|%4$-10s|%5$-5s|\n", item.split("~"));
 		}
 		
-		System.out.println ("Стоимость букета:");
+		System.out.println ("\nОбсчитываем букет:");
 		contentBouquet(firstBouquet);
 		System.out.print("Всего: ");
 		System.out.println (firstBouquet.getPriceBouquet());
@@ -169,7 +169,7 @@ public class MainFlowerGirl {
 		return strResult;
 	}
 	static public void contentBouquet(Bouquet bouquet){
-		System.out.println ("букет:");
+		//System.out.println ("букет:");
 		String []itemsBouquet=bouquet.toString().split("~~~");
 		
 		for (String item : itemsBouquet[0].split("~~")) {
