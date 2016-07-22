@@ -2,13 +2,23 @@
  * */
 package flowerGirl;
 
+import java.util.Map;
+
 abstract public class Flower {
+	String name;
 	int lengthFlower; // длина
 	float price; // стоимость
 	int freshness; // свежесть
 	String color; // цвет
-	public Flower (){	
-}
+
+	public Flower() {
+	}
+
+	
+
+	public String getName() {
+		return name;
+	}
 
 	public int getLengthFlower() {
 		return lengthFlower;

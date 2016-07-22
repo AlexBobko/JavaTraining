@@ -7,7 +7,6 @@ public class Accessory {
 
 	private String name;
 	private Float price;
-
 	Accessory() {
 	}
 	Accessory(String name, Float price) {

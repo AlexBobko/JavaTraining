@@ -4,8 +4,9 @@ package flowerGirl;
 public class Lily extends Flower {
 	int branching=1; //количество ответвлений
 	
-	public Lily (int lengthFlower,float price,int freshness,String color,int branching)
+	public Lily (String name, int lengthFlower,float price,int freshness,String color,int branching)
 	{
+		this.name=name;
 		this.lengthFlower=lengthFlower; // длина
 		this.price=price; // стоимость
 		this.freshness=freshness; // свежесть
