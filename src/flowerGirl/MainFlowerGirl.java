@@ -1,7 +1,11 @@
 package flowerGirl;
 
+import java.awt.List;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 /**
  * Цветочница. +Определить иерархию цветов. +Создать несколько объектов-цветов.
@@ -18,8 +22,9 @@ import java.util.Scanner;
  * информативный состав. • Наследование должно применяться только тогда, когда
  * это имеет смысл. • При кодировании должны быть использованы соглашения об
  * оформлении кода java code convention. • Классы должны быть грамотно разложены
- * по пакетам. • Консольное меню должно быть минимальным.
- *  - добавить исключения
+ * по пакетам. • Консольное меню должно быть минимальным. - добавить исключения
+ * toString
+ * 
  */
 public class MainFlowerGirl {
 
@@ -51,9 +56,13 @@ public class MainFlowerGirl {
 	static Lily whiteEnormousBushyLily = new Lily("whiteEnormousBushyLily", 60, (float) 31, 2, "белый", 5);
 
 	static Bouquet firstBouquet = new Bouquet(BouquetType.COMPOSITION);
-	static Bouquet firstBouquet2 = new Bouquet(BouquetType.COMPOSITION);
+	// static Bouquet firstBouquet2 = new Bouquet(BouquetType.COMPOSITION);
 
 	public static void main(String[] args) {
+		System.out.println(whiteGreaterBushyLily.hashCode());
+		System.out.println(whiteEnormousBushyLily.hashCode());
+		System.out.println(whiteGreaterLily.hashCode());
+
 		// составляем букет элемент, кол-во
 		firstBouquet.addAccessory(ribbon, 2);
 		firstBouquet.addAccessory(wrappingPaper, 1);
@@ -71,7 +80,7 @@ public class MainFlowerGirl {
 
 		// обработчик основного меню
 		menu: while (true) {
-			String select = startMenu(); 
+			String select = startMenu();
 			System.out.println(select);
 			switch (select) {
 			case "q": {
@@ -87,15 +96,47 @@ public class MainFlowerGirl {
 			}
 			case "s": { // s (sort) - Отсортировать цветы в букете по свежести
 				System.out.println("Сортируем цветы в букете по свежести:");
+				String formatOut = "%1$-25s|%2$-8s|%3$-5s|%4$-10s|%5$-5s|\n";
 				for (String item : sortFlovers(firstBouquet).split("~~")) {
-					System.out.printf("%1$-25s|%2$-8s|%3$-5s|%4$-10s|%5$-5s|\n", item.split("~"));
+					System.out.printf(formatOut, item.split("~"));
 				}
 				break;
 			}
 			case "l": { // Найти цветы в букете, соответствующие заданному
 						// диапазону длин стеблей
 				System.out.println("Выводим цветы из букета в заданном диапазоне длин:");
-				for (String item : getStemLength(firstBouquet, 40, 50).toString().split("~~")) {
+
+				// задать от до через ,
+				System.out.println("Задате нижнюю границу:");
+				Scanner sc = new Scanner(System.in);
+				int minLength = 0;
+				int maxLength = 0;
+				while (sc.hasNext()) {
+					try {
+						if (minLength <= 0) {
+							minLength = sc.nextInt();
+							if (minLength <= 0)
+								System.out.println("Не корректное значение, попробуйте еще раз:");
+							else
+								System.out.println("Задате верхнюю границу:");
+							continue;
+						}
+
+						if (maxLength <= 0) {
+							maxLength = sc.nextInt();
+							if (maxLength > 0 && maxLength > minLength)
+								break;
+							else {
+								System.out.println("Не корректное значение, попробуйте еще раз:");
+								continue;
+							}
+						}
+					} catch (Exception e) {
+						sc.next();
+						System.out.println("попробуйте еще раз:");
+					}
+				}
+				for (String item : getStemLength(firstBouquet, minLength, maxLength).toString().split("~~")) {
 					System.out.printf(formatPattern, item.split("~"));
 				}
 				break;
@@ -110,7 +151,8 @@ public class MainFlowerGirl {
 
 	// вывод меню, возвращают индификатор выбора пользователя
 	private static String startMenu() {
-		@SuppressWarnings("resource") // проверить, нужно ли оставлять
+		@SuppressWarnings("resource")
+		// проверить, нужно ли оставлять
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Главное меню");
 		System.out.println("q (quit)- Выйти из программы.");
@@ -121,7 +163,32 @@ public class MainFlowerGirl {
 		return sc.nextLine();
 	}
 
+	static public String sortFlovers(Bouquet bouquet) {
+		StringBuilder strResult = new StringBuilder();
+		Flower key;
+		TreeSet<Flower> srtFlower = new TreeSet<Flower>(new SortedByFreshness());
+
+		for (Map.Entry<? extends Flower, Integer> entry : bouquet.getFlowers().entrySet()) {
+			key = (Flower) entry.getKey();
+			srtFlower.add(key);
+		}
+		strResult = strResult.append("Название~Cвежесть~Длина~Цвет~Цена~~");
+		Iterator<Flower> it = srtFlower.iterator();
+		while (it.hasNext()) {
+			Flower currentFlowers = it.next();
+			strResult = strResult.append(currentFlowers.getName()).append("~");
+			strResult = strResult.append(currentFlowers.getFreshness()).append("~");
+			strResult = strResult.append(currentFlowers.getLengthFlower()).append("~");
+			strResult = strResult.append(currentFlowers.getColor()).append("~");
+			strResult = strResult.append(currentFlowers.getPrice()).append("~");
+			strResult = strResult.append("~");
+		}
+		return strResult.toString();
+	}
+	// ********************************************
+
 	// сортировка цветов в букете по свежести
+/*
 	static public String sortFlovers(Bouquet bouquet) {
 		StringBuilder strResult = new StringBuilder();
 		int length = bouquet.getFlowers().size();
@@ -170,6 +237,7 @@ public class MainFlowerGirl {
 		}
 		return strResult.toString();
 	}
+	*/
 
 	// Найти цветок в букете, соответствующий заданному диапазону длин стеблей.
 	static public StringBuilder getStemLength(Bouquet bouquet, int minStemLength, int maxStemLength) {
@@ -177,6 +245,8 @@ public class MainFlowerGirl {
 		float resultSum = 0;
 		int countAll = 0;
 		strResult = strResult.append(Bouquet.header);
+		// for (Entry<? extends Flower, Integer> entry :
+		// bouquet.getFlowers().entrySet())
 		for (Map.Entry entry : bouquet.getFlowers().entrySet()) {
 			Flower key = (Flower) entry.getKey();
 			// получаем цветы с нужной длиной

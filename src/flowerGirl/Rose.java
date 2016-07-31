@@ -1,7 +1,6 @@
+package flowerGirl;
 /**Цветок Роза
  *  */
-package flowerGirl;
-
 public class Rose extends Flower {
 	private BudSize budSize; //размер бутона 
 	
@@ -20,4 +19,33 @@ public class Rose extends Flower {
 	public void setBudSize(BudSize budSize) {
 		this.budSize = budSize;
 	}
+	@Override
+	public String toString() {
+		StringBuilder strResult = new StringBuilder();
+		strResult = strResult.append(super.toString());
+		strResult = strResult.append(" budSize=").append(this.budSize);
+		return strResult.toString();
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((budSize == null) ? 0 : budSize.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rose other = (Rose) obj;
+		if (budSize != other.budSize)
+			return false;
+		return true;
+	}
+	
+	
 }
