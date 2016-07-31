@@ -1,6 +1,7 @@
 package threadTranig;
 
-/**Создание нового потока */
+/**Класс для несинхронизированного вывода
+ * Создание нового потока */
 public class HelloThread extends Thread {
 	private int i = 0;
 	

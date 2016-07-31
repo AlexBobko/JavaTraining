@@ -24,7 +24,7 @@ public class IncreaseCounter {
 
 	synchronized public void f(String name) {
 		while (valueSet) {
-			// System.out.println("f1 wait " + name);
+//			 System.out.println("f1 wait " + name);
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -32,18 +32,18 @@ public class IncreaseCounter {
 			}
 		}
 
-		// System.out.println("f " + valueSet);
+//		 System.out.println("f " + valueSet);
 		goCount(name);
 		valueSet = true;
 		notify();
-		// System.out.println(name + " notify " + valueSet);
+//		 System.out.println(name + " notify " + valueSet);
 		return;
 	}
 
 	synchronized public void s(String name) {
-		// System.out.println("s1 wait " + valueSet);
+//		 System.out.println("s1 wait " + valueSet);
 		while (!valueSet) {
-			// System.out.println("s1 " + name);
+//			 System.out.println("s1 " + name);
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -51,10 +51,10 @@ public class IncreaseCounter {
 			}
 		}
 		goCount(name);
-		// System.out.println("s " + valueSet);
+//		 System.out.println("s " + valueSet);
 		valueSet = false;
 		notify();
-		// System.out.println(name + " notify " + valueSet);
+//		 System.out.println(name + " notify " + valueSet);
 		return;
 	}
 }
