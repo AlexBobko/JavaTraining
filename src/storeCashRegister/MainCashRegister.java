@@ -30,7 +30,9 @@ public class MainCashRegister {
 
 		int countCashbox = 5; // количество потоков-касс
 		int countVisitorBuyer = 300; // количество покупателей
-
+		
+		System.out.printf("%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s \n", "№ кассы","кл.","товар","шт","цена","сумма");
+		
 		// набиваем очередь рандомными клиентами с их нумерацией
 		for (int ii = 1; ii <= countVisitorBuyer; ii++) {
 			if (ii == 20) {
