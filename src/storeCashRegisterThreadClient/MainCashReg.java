@@ -14,12 +14,13 @@ import java.util.concurrent.*;
  * каждого покупателя есть набор товаров, которые должны быть выведены в
  * процессе обслуживания.
  * 
- * Покупатели потоки, кассы - очередь
+ * Покупатели-потоки, кассы - очередь
+ * одновременно потоков = кассы + 1
  * 
  */
 public class MainCashReg {
 	public static long start = System.currentTimeMillis();
-	static int countCashbox = 8; // задаем количество касс 
+	static int countCashbox = 8; // задаем количество касс
 	static int countVisitorBuyer = 300000; // задаем количество покупателей
 	static String fOut = "%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s руб\n"; //формат вывода
 	private static Random random = new Random();
@@ -58,10 +59,8 @@ public class MainCashReg {
 				System.out.printf(fOut, queueFuture.remove().get().toString().split("~"));
 			} catch (InterruptedException e) {
 //				e.printStackTrace();
-				
 			} catch (ExecutionException e) {
 //				e.printStackTrace();
-				
 			} catch (Exception e) {
 				System.out.println("Обработка закончена");
 				break;
