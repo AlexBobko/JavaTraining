@@ -6,17 +6,17 @@ public class VisitorBuyer {
 	private String productId;
 	private float price;
 	private int countProduct;
-	
-	VisitorBuyer()
-	{}
 
-	VisitorBuyer (int counter, String currentProductId,float currentPrice,int currentCountProduct){
-		clientNumber=counter;
-		price=currentPrice;
-		countProduct=currentCountProduct;
-		productId=currentProductId;
+	VisitorBuyer() {
 	}
-		
+
+	VisitorBuyer(int counter, String currentProductId, float currentPrice, int currentCountProduct) {
+		clientNumber = counter;
+		price = currentPrice;
+		countProduct = currentCountProduct;
+		productId = currentProductId;
+	}
+
 	public int getClientNumber() {
 		return clientNumber;
 	}
@@ -28,7 +28,7 @@ public class VisitorBuyer {
 	public float getPrice() {
 		return price;
 	}
-	
+
 	public int getCountProduct() {
 		return countProduct;
 	}
