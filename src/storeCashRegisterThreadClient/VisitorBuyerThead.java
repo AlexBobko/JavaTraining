@@ -1,10 +1,6 @@
 package storeCashRegisterThreadClient;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import storeCashRegister.VisitorBuyer;
+import java.util.concurrent.*;
 
 /* Покупатель - поток*/
 public class VisitorBuyerThead<Fiture> implements Callable<StringBuffer> {
@@ -17,19 +13,6 @@ public class VisitorBuyerThead<Fiture> implements Callable<StringBuffer> {
 	StringBuffer str=new StringBuffer();
 	ArrayBlockingQueue<CashboxAlternative> cashboxs;
 //	Thread th;
-
-	/*VisitorBuyerThead() {
-	}
-	VisitorBuyerThead(int counter, String currentProductId, float currentPrice, int currentCountProduct) {
-		clientNumber = counter;
-		price = currentPrice;
-		countProduct = currentCountProduct;
-		productId = currentProductId;
-		tname = tname.append("client - ").append(counter);
-		str=toFormatString();
-//		th = new Thread(this, tname.toString());
-	}*/
-	
 	VisitorBuyerThead(int counter, String currentProductId, float currentPrice, int currentCountProduct,
 			ArrayBlockingQueue<CashboxAlternative> queue) {
 		clientNumber = counter;
@@ -57,8 +40,7 @@ public class VisitorBuyerThead<Fiture> implements Callable<StringBuffer> {
 					wait(200); //если не доступна очередь
 					continue;
 				} catch (InterruptedException e1) {
-					String error = "error " + clientNumber;
-					// System.out.println(error);
+					// System.out.println("error " + clientNumber);
 					e1.printStackTrace();
 				}
 			}

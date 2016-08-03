@@ -1,10 +1,9 @@
 package storeCashRegisterThreadClient;
 
 //import java.awt.*;
-import java.io.PrintStream;
-import java.awt.List;
+
 import java.util.*;
-import java.util.Random;
+//import java.util.Random;
 import java.util.concurrent.*;
 
 /**
@@ -15,30 +14,24 @@ import java.util.concurrent.*;
  * каждого покупателя есть набор товаров, которые должны быть выведены в
  * процессе обслуживания.
  * 
+ * Покупатели потоки, кассы - очередь
+ * 
  */
 public class MainCashReg {
-	static int countCashbox = 5; // задаем количество потоков-касс
-	static int countVisitorBuyer = 50; // задаем количество покупателей
-	static String fOut = "%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s руб\n";
-	static int ii = 0;
+	public static long start = System.currentTimeMillis();
+	static int countCashbox = 8; // задаем количество касс 
+	static int countVisitorBuyer = 300000; // задаем количество покупателей
+	static String fOut = "%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s руб\n"; //формат вывода
 	private static Random random = new Random();
-
-	private static ArrayBlockingQueue<CashboxAlternative> queue = new ArrayBlockingQueue<CashboxAlternative>(
-			countCashbox, true);
+	private static ArrayBlockingQueue<CashboxAlternative> queue = new ArrayBlockingQueue<CashboxAlternative>(countCashbox, true);
 	private static ConcurrentLinkedQueue<Future<StringBuffer>> queueFuture = new ConcurrentLinkedQueue<Future<StringBuffer>>();
-
-	// private static ConcurrentLinkedQueue<CashboxAlternative> queue = new
-	// ConcurrentLinkedQueue<CashboxAlternative>();
 	// private static ExecutorService threads = Executors.newCachedThreadPool();
-	private static ExecutorService threads = Executors.newFixedThreadPool(countCashbox);
-
-	// static ExecutorService pool = Executors.newFixedThreadPool(countCashbox);
+	private static ExecutorService threads = Executors.newFixedThreadPool(countCashbox+1);
+	static int ii = 0;
 
 	public static void main(String[] args) {
 		// заголовок вывода результата
-		System.out.printf("%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s \n", "№ кассы", "кл.", "товар", "шт", "цена",
-				"сумма");
-
+		System.out.printf("%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s \n", "№ кассы", "кл.", "товар", "шт", "цена","сумма");
 		// создаем кассы
 		for (int i = 1; i <= countCashbox; i++) {
 			try {
@@ -73,18 +66,16 @@ public class MainCashReg {
 				System.out.println("Обработка закончена");
 				break;
 			}
-			finally {
-//				System.out.println("Обработка закончена");
-			}
 		}
+		System.out.println("время исполнения " + (System.currentTimeMillis() - start) + "мс ");
 	}
 
-	// генератор покупателя
+	// генератор покупателя 
+	//здесь можно забить любое количество любого товара и немного поправить вывод
 	public static VisitorBuyerThead<?> generatorVisitorBuyer(int number) {
 		StringBuffer currentProductId = new StringBuffer();
 		currentProductId = currentProductId.append("tovar").append(random.nextInt(89999) + 10000);
 		float currentPrice = (float) (random.nextInt(9800) + 199) / 100;
-		// количество единиц такого товара - загруженность обработки
 		int currentCountProduct = (random.nextInt(5) + 1);
 		return new VisitorBuyerThead(number, currentProductId.toString(), currentPrice, currentCountProduct, queue);
 	}

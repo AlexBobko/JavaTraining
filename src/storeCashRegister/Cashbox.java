@@ -32,13 +32,14 @@ public class Cashbox implements Runnable {
 				result = result.append(visitor.getCountProduct()).append("~");
 				result = result.append(visitor.getPrice()).append("~");
 				result = result.append(visitor.getPrice() * visitor.getCountProduct()).append("~");
-				// Thread.sleep(5 * visitor.getCountProduct()); //пауза от шт.
-				// товара
+				//задать паузу на шт. товара
+				// Thread.sleep(5 * visitor.getCountProduct()); 
+
 				System.out.printf("%1$-8s|%2$3s|%3$-10s|%4$3s|%5$7s|%6$7s руб\n", result.toString().split("~"));
 				i++;
 				cosht += visitor.getCountProduct();// считаем товары
-//				Thread.sleep(10 * visitor.getCountProduct()); // пауза от шт.
-																// товара
+				//задать паузу на шт. товара
+				//Thread.sleep(10 * visitor.getCountProduct()); 
 			} catch (Exception e) {
 				System.out.println(this.th.getName() + ": обслужено " + " клиентов- " + i + ", единиц товара - " + cosht
 						+ " время исполнения " + (System.currentTimeMillis() - MainCashRegister.start) + "мс");

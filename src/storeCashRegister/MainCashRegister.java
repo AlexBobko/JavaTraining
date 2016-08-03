@@ -26,15 +26,15 @@ import java.util.concurrent.TimeUnit;
  * обработана - кассы отключаются и выводят результат
  */
 public class MainCashRegister {
-	public static long start = System.currentTimeMillis(); // время выполнения
-													// программы
+	public static long start = System.currentTimeMillis();
 	private static Random random = new Random();
 	private static ConcurrentLinkedQueue<VisitorBuyer> queue = new ConcurrentLinkedQueue<VisitorBuyer>();
 	private static ExecutorService threads = Executors.newCachedThreadPool();
 
 	public static void main(String[] args) {
 
-		int countCashbox = 3; // задаем количество потоков-касс
+		int countCashbox = 4; // задаем количество потоков-касс
+		int countCashboxStart = 4000; // на каком клиенте стартуют кассы
 		int countVisitorBuyer = 300000; // задаем количество покупателей
 
 		// заголовок вывода результата
@@ -42,15 +42,12 @@ public class MainCashRegister {
 				"сумма");
 		// набиваем очередь рандомными клиентами с их нумерацией
 		for (int ii = 1; ii <= countVisitorBuyer; ii++) {
-			// подключаем кассы после того как набралось 20 клиентов
-			if (ii == 4000) {
-
-				// передаем туда общую очередь
+			// подключаем кассы после того как набрались клиенты 
+			if (ii == countCashboxStart) {
 				for (int i = 1; i <= countCashbox; i++) {
 					threads.submit(new Cashbox(i, queue));
 					// new Cashbox(i, queue);
 				}
-
 			}
 			queue.add(generatorVisitorBuyer(ii));
 		}
@@ -58,15 +55,14 @@ public class MainCashRegister {
 		long end = System.currentTimeMillis() - start;
 		System.out.println("время выполнения основного потока - " + end + "мс");
 	}
-
+	
 	// генератор покупателя
 	public static VisitorBuyer generatorVisitorBuyer(int number) {
 		StringBuilder currentProductId = new StringBuilder();
 		currentProductId = currentProductId.append("tovar").append(random.nextInt(89999) + 10000);
 		float currentPrice = (float) (random.nextInt(9800) + 199) / 100;
-		// количество единиц такого товара - загруженность обработки
+		// количество единиц такого товара - загруженность обработки(раскоментить в кассе)
 		int currentCountProduct = (random.nextInt(5) + 1);
 		return new VisitorBuyer(number, currentProductId.toString(), currentPrice, currentCountProduct);
 	}
-
 }
