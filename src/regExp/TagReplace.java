@@ -14,7 +14,6 @@ public class TagReplace {
 	private Pattern pattern;
 	private Matcher matcher;
 	private String strSearch = "<[pP].*?>";
-
 	private String strReplace="<p>";
 	
 	public TagReplace() {

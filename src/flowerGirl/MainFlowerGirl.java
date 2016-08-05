@@ -1,9 +1,13 @@
 package flowerGirl;
 
 import java.awt.List;
+import java.text.DateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -27,42 +31,45 @@ import java.util.TreeSet;
  * 
  */
 public class MainFlowerGirl {
+	static Date currentDate = new Date();
+	// static Locale locale = new Locale("ru", "RU");
+	static Locale locale = new Locale("en", "EN");
 
+	private static ResourceBundle rb = ResourceBundle.getBundle("flowerGirl.localization/Messages", locale);
+
+	static DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, locale);
 	static String formatPattern = "%1$-25s|%2$-5s|%3$-8s|%4$-10s|%5$-5s|%6$-4s|%7$-6s|\n";
-
-	// создаем аксессуары
-	static Accessory basket = new Accessory("Корзинка", (float) 9);
-	static Accessory ribbon = new Accessory("Лента", (float) 0.8);
-	static Accessory wrappingPaper = new Accessory("Оберточная бумага", (float) 0.4);
-	static Accessory wrappingPoli = new Accessory("Оберточная пленка", (float) 1.2);
-
-	// создаем розы
-	// длина, цена, свежесть(дней), цвет, размер бутона
-	static Rose redShortRose = new Rose("redShortRose", 30, (float) 7, 2, "красный", BudSize.SMALL);
-	static Rose redMediumRose = new Rose("redMediumRose", 40, (float) 9, 3, "красный", BudSize.MEDIUM);
-	static Rose redGreaterRose = new Rose("redGreaterRose", 50, (float) 12, 2, "красный", BudSize.MEDIUM);
-	static Rose redEnormousRose = new Rose("redEnormousRose", 60, (float) 15, 1, "красный", BudSize.LARGE);
-	static Rose whiteShortRose = new Rose("whiteShortRose", 30, (float) 6, 2, ",белый", BudSize.SMALL);
-	static Rose whiteMediumRose = new Rose("whiteMediumRose", 40, (float) 8, 4, "белый", BudSize.MEDIUM);
-	static Rose whiteGreaterRose = new Rose("whiteGreaterRose", 50, (float) 11, 3, "белый", BudSize.LARGE);
-	static Rose whiteEnormousRose = new Rose("whiteEnormousRose", 60, (float) 13, 4, "белый", BudSize.LARGE);
-	// лилии
-	// длина, цена, свежесть (дней), цвет, количество ответвлений
-	static Lily whiteMediumLily = new Lily("whiteMediumLily", 45, (float) 17, 5, "белый", 3);
-	static Lily whiteGreaterLily = new Lily("whiteGreaterLily", 50, (float) 22, 2, "белый", 3);
-	static Lily whiteEnormousLily = new Lily("whiteEnormousLily", 60, (float) 25, 3, "белый", 3);
-	static Lily whiteMediumBushyLily = new Lily("whiteMediumBushyLily", 45, (float) 23, 5, "белый", 5);
-	static Lily whiteGreaterBushyLily = new Lily("whiteGreaterBushyLily", 50, (float) 27, 3, "белый", 5);
-	static Lily whiteEnormousBushyLily = new Lily("whiteEnormousBushyLily", 60, (float) 31, 2, "белый", 5);
-
+	// аксессуары
+	static Accessory basket = new Accessory(rb.getString("basket"), (float) 9);
+	static Accessory ribbon = new Accessory(rb.getString("ribbon"), (float) 0.8);
+	static Accessory wrappingPaper = new Accessory(rb.getString("wrappingPaper"), (float) 0.4);
+	static Accessory wrappingPoli = new Accessory(rb.getString("wrappingPoli"), (float) 1.2);
+	// розы длина, цена, свежесть(дн), цв, размер бутона
+	static Rose redShortRose = new Rose("redShortRose", 30, (float) 7, 2, rb.getString("red"), BudSize.SMALL);
+	static Rose redMediumRose = new Rose("redMediumRose", 40, (float) 9, 3, rb.getString("red"), BudSize.MEDIUM);
+	static Rose redGreaterRose = new Rose("redGreaterRose", 50, (float) 12, 2, rb.getString("red"), BudSize.MEDIUM);
+	static Rose redEnormousRose = new Rose("redEnormousRose", 60, (float) 15, 1, rb.getString("red"), BudSize.LARGE);
+	static Rose whiteShortRose = new Rose("whiteShortRose", 30, (float) 6, 2, rb.getString("white"), BudSize.SMALL);
+	static Rose whiteMediumRose = new Rose("whiteMediumRose", 40, (float) 8, 4, rb.getString("white"), BudSize.MEDIUM);
+	static Rose whiteGreaterRose = new Rose("whiteGreaterRose", 50, (float) 11, 3, rb.getString("white"),
+			BudSize.LARGE);
+	static Rose whiteEnormousRose = new Rose("whiteEnormousRose", 60, (float) 13, 4, rb.getString("white"),
+			BudSize.LARGE);
+	// лилии длина, цена, свежесть (дн), цв, кол. ответвлений
+	static Lily whiteMediumLily = new Lily("whiteMediumLily", 45, (float) 17, 5, rb.getString("white"), 3);
+	static Lily whiteGreaterLily = new Lily("whiteGreaterLily", 50, (float) 22, 2, rb.getString("white"), 3);
+	static Lily whiteEnormousLily = new Lily("whiteEnormousLily", 60, (float) 25, 3, rb.getString("white"), 3);
+	static Lily whiteMediumBushyLily = new Lily("whiteMediumBushyLily", 45, (float) 23, 5, rb.getString("white"), 5);
+	static Lily whiteGreaterBushyLily = new Lily("whiteGreaterBushyLily", 50, (float) 27, 3, rb.getString("white"), 5);
+	static Lily whiteEnormousBushyLily = new Lily("whiteEnormousBushyLily", 60, (float) 31, 2, rb.getString("white"),
+			5);
 	static Bouquet firstBouquet = new Bouquet(BouquetType.COMPOSITION);
 	// static Bouquet firstBouquet2 = new Bouquet(BouquetType.COMPOSITION);
 
 	public static void main(String[] args) {
-		System.out.println(whiteGreaterBushyLily.hashCode());
-		System.out.println(whiteEnormousBushyLily.hashCode());
-		System.out.println(whiteGreaterLily.hashCode());
-
+		// System.out.println(whiteGreaterBushyLily.hashCode());
+		// System.out.println(whiteEnormousBushyLily.hashCode());
+		// System.out.println(whiteGreaterLily.hashCode());
 		// составляем букет элемент, кол-во
 		firstBouquet.addAccessory(ribbon, 2);
 		firstBouquet.addAccessory(wrappingPaper, 1);
@@ -84,18 +91,18 @@ public class MainFlowerGirl {
 			System.out.println(select);
 			switch (select) {
 			case "q": {
-				System.out.println("exit");
+				System.out.println(rb.getString("quit"));
 				break menu;
 			}
 			case "a": { // Вывести все элементы букета и стоимость
-				System.out.println("\nОбсчитываем букет:");
+				System.out.println("\n" + rb.getString("cheat.bouque") + ":");
 				contentBouquet(firstBouquet);
-				System.out.print("Всего: ");
+				System.out.print(rb.getString("quit") + ": ");
 				System.out.println(firstBouquet.getPriceBouquet());
 				break;
 			}
 			case "s": { // s (sort) - Отсортировать цветы в букете по свежести
-				System.out.println("Сортируем цветы в букете по свежести:");
+				System.out.println(rb.getString("sorting")+ ": ");
 				String formatOut = "%1$-25s|%2$-8s|%3$-5s|%4$-10s|%5$-5s|\n";
 				for (String item : sortFlovers(firstBouquet).split("~~")) {
 					System.out.printf(formatOut, item.split("~"));
@@ -104,10 +111,10 @@ public class MainFlowerGirl {
 			}
 			case "l": { // Найти цветы в букете, соответствующие заданному
 						// диапазону длин стеблей
-				System.out.println("Выводим цветы из букета в заданном диапазоне длин:");
+				System.out.println( rb.getString("out.range") + ": ");
 
 				// задать от до через ,
-				System.out.println("Задате нижнюю границу:");
+				System.out.println(rb.getString("lower.bound") + ":");
 				Scanner sc = new Scanner(System.in);
 				int minLength = 0;
 				int maxLength = 0;
@@ -116,9 +123,9 @@ public class MainFlowerGirl {
 						if (minLength <= 0) {
 							minLength = sc.nextInt();
 							if (minLength <= 0)
-								System.out.println("Не корректное значение, попробуйте еще раз:");
+								System.out.println(rb.getString("not.correctly"));
 							else
-								System.out.println("Задате верхнюю границу:");
+								System.out.println(rb.getString("top.bound") + ": ");
 							continue;
 						}
 
@@ -154,6 +161,7 @@ public class MainFlowerGirl {
 		@SuppressWarnings("resource")
 		// проверить, нужно ли оставлять
 		Scanner sc = new Scanner(System.in);
+		System.out.println(df.format(currentDate));
 		System.out.println("Главное меню");
 		System.out.println("q (quit)- Выйти из программы.");
 		System.out.println("a (all) - Вывести все элементы букета и стоимость.");
@@ -188,56 +196,38 @@ public class MainFlowerGirl {
 	// ********************************************
 
 	// сортировка цветов в букете по свежести
-/*
-	static public String sortFlovers(Bouquet bouquet) {
-		StringBuilder strResult = new StringBuilder();
-		int length = bouquet.getFlowers().size();
-
-		Flower[] arrFlowers = new Flower[length];
-		int[][] myIndexArray = new int[length][2];
-
-		int i = 0;
-		for (Map.Entry entry : bouquet.getFlowers().entrySet()) {
-			Flower key = (Flower) entry.getKey();
-			arrFlowers[i] = key;
-			myIndexArray[i][0] = (int) key.getFreshness();
-			myIndexArray[i][1] = i;
-			i++;
-		}
-
-		for (int ii = 0; ii < length; ii++) {
-			int min = myIndexArray[ii][0];
-			int minIndex = ii;
-			for (int j = ii + 1; j < length; j++) {
-				// Если находим, запоминаем его индекс
-				if (myIndexArray[j][0] < min) {
-					min = myIndexArray[j][0];
-					minIndex = j;
-				}
-			}
-			if (ii != minIndex) {
-				int tmp = myIndexArray[ii][0];
-				int tmpIndex = myIndexArray[ii][1];
-				myIndexArray[ii][0] = myIndexArray[minIndex][0];
-				myIndexArray[ii][1] = myIndexArray[minIndex][1];
-				myIndexArray[minIndex][0] = tmp;
-				myIndexArray[minIndex][1] = tmpIndex;
-			}
-		}
-		strResult = strResult.append("Название~Cвежесть~Длина~Цвет~Цена~~");
-		for (int ii = 0; ii < length; ii++) {
-			// System.out.println(arrFlowers[myIndexArray[ii][1]]);
-			Flower currentFlowers = arrFlowers[myIndexArray[ii][1]];
-			strResult = strResult.append(currentFlowers.getName()).append("~");
-			strResult = strResult.append(currentFlowers.getFreshness()).append("~");
-			strResult = strResult.append(currentFlowers.getLengthFlower()).append("~");
-			strResult = strResult.append(currentFlowers.getColor()).append("~");
-			strResult = strResult.append(currentFlowers.getPrice()).append("~");
-			strResult = strResult.append("~");
-		}
-		return strResult.toString();
-	}
-	*/
+	/*
+	 * static public String sortFlovers(Bouquet bouquet) { StringBuilder
+	 * strResult = new StringBuilder(); int length =
+	 * bouquet.getFlowers().size();
+	 * 
+	 * Flower[] arrFlowers = new Flower[length]; int[][] myIndexArray = new
+	 * int[length][2];
+	 * 
+	 * int i = 0; for (Map.Entry entry : bouquet.getFlowers().entrySet()) {
+	 * Flower key = (Flower) entry.getKey(); arrFlowers[i] = key;
+	 * myIndexArray[i][0] = (int) key.getFreshness(); myIndexArray[i][1] = i;
+	 * i++; }
+	 * 
+	 * for (int ii = 0; ii < length; ii++) { int min = myIndexArray[ii][0]; int
+	 * minIndex = ii; for (int j = ii + 1; j < length; j++) { // Если находим,
+	 * запоминаем его индекс if (myIndexArray[j][0] < min) { min =
+	 * myIndexArray[j][0]; minIndex = j; } } if (ii != minIndex) { int tmp =
+	 * myIndexArray[ii][0]; int tmpIndex = myIndexArray[ii][1];
+	 * myIndexArray[ii][0] = myIndexArray[minIndex][0]; myIndexArray[ii][1] =
+	 * myIndexArray[minIndex][1]; myIndexArray[minIndex][0] = tmp;
+	 * myIndexArray[minIndex][1] = tmpIndex; } } strResult =
+	 * strResult.append("Название~Cвежесть~Длина~Цвет~Цена~~"); for (int ii = 0;
+	 * ii < length; ii++) { //
+	 * System.out.println(arrFlowers[myIndexArray[ii][1]]); Flower
+	 * currentFlowers = arrFlowers[myIndexArray[ii][1]]; strResult =
+	 * strResult.append(currentFlowers.getName()).append("~"); strResult =
+	 * strResult.append(currentFlowers.getFreshness()).append("~"); strResult =
+	 * strResult.append(currentFlowers.getLengthFlower()).append("~"); strResult
+	 * = strResult.append(currentFlowers.getColor()).append("~"); strResult =
+	 * strResult.append(currentFlowers.getPrice()).append("~"); strResult =
+	 * strResult.append("~"); } return strResult.toString(); }
+	 */
 
 	// Найти цветок в букете, соответствующий заданному диапазону длин стеблей.
 	static public StringBuilder getStemLength(Bouquet bouquet, int minStemLength, int maxStemLength) {
