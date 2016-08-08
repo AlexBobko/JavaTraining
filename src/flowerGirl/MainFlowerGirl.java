@@ -32,13 +32,11 @@ import java.util.TreeSet;
  */
 public class MainFlowerGirl {
 	static Date currentDate = new Date();
-	// static Locale locale = new Locale("ru", "RU");
-	static Locale locale = new Locale("en", "EN");
-
-	private static ResourceBundle rb = ResourceBundle.getBundle("flowerGirl.localization/Messages", locale);
-
+	static Locale locale = new Locale("ru", "RU");
+	// static Locale locale = new Locale("en", "EN");
+	public static ResourceBundle rb = ResourceBundle.getBundle("flowerGirl.localization/Messages", locale);
 	static DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, locale);
-	static String formatPattern = "%1$-25s|%2$-5s|%3$-8s|%4$-10s|%5$-5s|%6$-4s|%7$-6s|\n";
+	static String formatPattern = "%1$-25s|%2$-6s|%3$-9s|%4$-10s|%5$-5s|%6$-6s|%7$-6s|\n";
 	// аксессуары
 	static Accessory basket = new Accessory(rb.getString("basket"), (float) 9);
 	static Accessory ribbon = new Accessory(rb.getString("ribbon"), (float) 0.8);
@@ -95,15 +93,15 @@ public class MainFlowerGirl {
 				break menu;
 			}
 			case "a": { // Вывести все элементы букета и стоимость
-				System.out.println("\n" + rb.getString("cheat.bouque") + ":");
+				System.out.println("\n" + (rb.getString("cheat.bouquet")) + ":");
 				contentBouquet(firstBouquet);
 				System.out.print(rb.getString("quit") + ": ");
 				System.out.println(firstBouquet.getPriceBouquet());
 				break;
 			}
 			case "s": { // s (sort) - Отсортировать цветы в букете по свежести
-				System.out.println(rb.getString("sorting")+ ": ");
-				String formatOut = "%1$-25s|%2$-8s|%3$-5s|%4$-10s|%5$-5s|\n";
+				System.out.println(rb.getString("sorting") + ": ");
+				String formatOut = "%1$-25s|%2$-9s|%3$-6s|%4$-10s|%5$-5s|\n";
 				for (String item : sortFlovers(firstBouquet).split("~~")) {
 					System.out.printf(formatOut, item.split("~"));
 				}
@@ -111,7 +109,7 @@ public class MainFlowerGirl {
 			}
 			case "l": { // Найти цветы в букете, соответствующие заданному
 						// диапазону длин стеблей
-				System.out.println( rb.getString("out.range") + ": ");
+				System.out.println(rb.getString("out.range") + ": ");
 
 				// задать от до через ,
 				System.out.println(rb.getString("lower.bound") + ":");
@@ -122,25 +120,26 @@ public class MainFlowerGirl {
 					try {
 						if (minLength <= 0) {
 							minLength = sc.nextInt();
-							if (minLength <= 0)
+							if (minLength <= 0) {
 								System.out.println(rb.getString("not.correctly"));
-							else
+							} else
 								System.out.println(rb.getString("top.bound") + ": ");
 							continue;
 						}
 
 						if (maxLength <= 0) {
 							maxLength = sc.nextInt();
-							if (maxLength > 0 && maxLength > minLength)
+							if (maxLength > 0 && maxLength > minLength) {
 								break;
-							else {
-								System.out.println("Не корректное значение, попробуйте еще раз:");
+							} else {
+								System.out.println(rb.getString("not.correctly"));
 								continue;
 							}
 						}
 					} catch (Exception e) {
+						System.out.println(rb.getString("not.correctly"));
+//						continue;
 						sc.next();
-						System.out.println("попробуйте еще раз:");
 					}
 				}
 				for (String item : getStemLength(firstBouquet, minLength, maxLength).toString().split("~~")) {
@@ -149,7 +148,7 @@ public class MainFlowerGirl {
 				break;
 			}
 			default: {
-				System.out.println("Не корректный выбор");
+				System.out.println(rb.getString("not.correctly"));
 				continue menu;
 			}
 			}
@@ -162,12 +161,11 @@ public class MainFlowerGirl {
 		// проверить, нужно ли оставлять
 		Scanner sc = new Scanner(System.in);
 		System.out.println(df.format(currentDate));
-		System.out.println("Главное меню");
-		System.out.println("q (quit)- Выйти из программы.");
-		System.out.println("a (all) - Вывести все элементы букета и стоимость.");
-		System.out.println("s (sort) - Отсортировать цветы в букете по свежести.");
-		System.out.println(
-				"l (length) - Найти цветы в букете, соответствующие \nзаданному диапазону длин стеблей (задавать в getStemLength).");
+		System.out.println(rb.getString("menu.main"));
+		System.out.println(rb.getString("menu.quit"));
+		System.out.println(rb.getString("menu.all"));
+		System.out.println(rb.getString("menu.sort"));
+		System.out.println(rb.getString("menu.length"));
 		return sc.nextLine();
 	}
 
@@ -175,12 +173,12 @@ public class MainFlowerGirl {
 		StringBuilder strResult = new StringBuilder();
 		Flower key;
 		TreeSet<Flower> srtFlower = new TreeSet<Flower>(new SortedByFreshness());
-
 		for (Map.Entry<? extends Flower, Integer> entry : bouquet.getFlowers().entrySet()) {
 			key = (Flower) entry.getKey();
 			srtFlower.add(key);
 		}
-		strResult = strResult.append("Название~Cвежесть~Длина~Цвет~Цена~~");
+		System.out.println();
+		strResult = strResult.append(rb.getString("header.sort.frehness"));
 		Iterator<Flower> it = srtFlower.iterator();
 		while (it.hasNext()) {
 			Flower currentFlowers = it.next();
