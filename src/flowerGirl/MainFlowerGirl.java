@@ -32,7 +32,7 @@ import java.util.TreeSet;
  */
 public class MainFlowerGirl {
 	static Date currentDate = new Date();
-	static Locale locale = new Locale("ru", "RU");
+	static Locale locale = new Locale("ru", "RU"); 
 	// static Locale locale = new Locale("en", "EN");
 	public static ResourceBundle rb = ResourceBundle.getBundle("flowerGirl.localization/Messages", locale);
 	static DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, locale);
@@ -69,6 +69,7 @@ public class MainFlowerGirl {
 		// System.out.println(whiteEnormousBushyLily.hashCode());
 		// System.out.println(whiteGreaterLily.hashCode());
 		// составляем букет элемент, кол-во
+		LogerFlowerGirl.addlog("start program");
 		firstBouquet.addAccessory(ribbon, 2);
 		firstBouquet.addAccessory(wrappingPaper, 1);
 		firstBouquet.addAccessory(basket, 1);
@@ -90,6 +91,7 @@ public class MainFlowerGirl {
 			switch (select) {
 			case "q": {
 				System.out.println(rb.getString("quit"));
+				LogerFlowerGirl.addlog("quit");
 				break menu;
 			}
 			case "a": { // Вывести все элементы букета и стоимость
@@ -110,7 +112,6 @@ public class MainFlowerGirl {
 			case "l": { // Найти цветы в букете, соответствующие заданному
 						// диапазону длин стеблей
 				System.out.println(rb.getString("out.range") + ": ");
-
 				// задать от до через ,
 				System.out.println(rb.getString("lower.bound") + ":");
 				Scanner sc = new Scanner(System.in);
@@ -122,6 +123,7 @@ public class MainFlowerGirl {
 							minLength = sc.nextInt();
 							if (minLength <= 0) {
 								System.out.println(rb.getString("not.correctly"));
+								LogerFlowerGirl.addlog(select + " - " + minLength + " minLength <= 0");
 							} else
 								System.out.println(rb.getString("top.bound") + ": ");
 							continue;
@@ -133,11 +135,13 @@ public class MainFlowerGirl {
 								break;
 							} else {
 								System.out.println(rb.getString("not.correctly"));
+								LogerFlowerGirl.addlog(select + " - " + maxLength + " not.correctly");
 								continue;
 							}
 						}
 					} catch (Exception e) {
 						System.out.println(rb.getString("not.correctly"));
+						LogerFlowerGirl.addlog(e + " not.correctly");
 //						continue;
 						sc.next();
 					}
@@ -149,6 +153,7 @@ public class MainFlowerGirl {
 			}
 			default: {
 				System.out.println(rb.getString("not.correctly"));
+				LogerFlowerGirl.addlog(select + " not.correctly");
 				continue menu;
 			}
 			}
@@ -160,6 +165,8 @@ public class MainFlowerGirl {
 		@SuppressWarnings("resource")
 		// проверить, нужно ли оставлять
 		Scanner sc = new Scanner(System.in);
+		LogerFlowerGirl.addlog("main menu");
+//		System.out.println(currentDate);
 		System.out.println(df.format(currentDate));
 		System.out.println(rb.getString("menu.main"));
 		System.out.println(rb.getString("menu.quit"));

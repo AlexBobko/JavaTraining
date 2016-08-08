@@ -45,7 +45,5 @@ public class Rose extends Flower {
 		if (budSize != other.budSize)
 			return false;
 		return true;
-	}
-	
-	
+	}	
 }
