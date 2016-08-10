@@ -1,8 +1,6 @@
-<?xml version="1.0" ?>
-<! DOCTYPE studentList>
 <!ELEMENT studentList (student+)>
 <!ELEMENT student (firstName,lastName,age,faculty)>
-<!ELEMENT firstName (#PCDATA) #REQUIRED—>
-<!ELEMENT lastName (#PCDATA) #REQUIRED—>
-<!ELEMENT age (#PCDATA) #REQUIRED—>
-<!ELEMENT faculty #FIXED ksis>
+<!ELEMENT firstName (#PCDATA)>
+<!ELEMENT lastName (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT faculty (#PCDATA)>
