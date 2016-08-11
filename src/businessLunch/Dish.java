@@ -1,6 +1,6 @@
 package businessLunch;
 
-/** Блюдо */
+/**Блюдо */
 public class Dish {
 	private String name;
 	private float price = 0;
