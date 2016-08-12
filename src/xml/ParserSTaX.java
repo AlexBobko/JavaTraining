@@ -34,7 +34,7 @@ public class ParserSTaX {
 						System.out.println(reader.getLocalName());
 						isPointList = true;
 					} else if (reader.getLocalName().equals("point")) {
-						System.out.print(reader.getLocalName() + " " + reader.getAttributeValue(0) + ":");
+						System.out.print(reader.getLocalName() + " " + reader.getAttributeValue(0) + ": ");
 						isPoint = true;
 					} else if (reader.getLocalName().equals("x"))
 						isX = true;
