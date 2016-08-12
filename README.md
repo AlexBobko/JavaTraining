@@ -13,3 +13,4 @@ b)package storeCashRegisterThreadClient; клиенты-потоки</br>
 + package helloLocal приветствовать пользователя на трех языках</br> 
 package regExp; - регулярные выражения</br>
 +TagReplace - поиск и замена тегов</br>
++xml - парсеры, схемы xml</br>
