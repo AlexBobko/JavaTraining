@@ -21,9 +21,10 @@ public class ParserSTaX {
 		boolean isPoint = false;
 		boolean isX = false;
 		boolean isY = false;
+		boolean isUnit = false;
 		String x = "";
 		String y = "";
-		boolean isUnit = false;
+		int el = 0;
 		try {
 			XMLStreamReader reader = inpFact.createXMLStreamReader(new FileInputStream("src/xml/FileToParse.xml"));
 			while (reader.hasNext()) {
@@ -34,7 +35,8 @@ public class ParserSTaX {
 						System.out.println(reader.getLocalName());
 						isPointList = true;
 					} else if (reader.getLocalName().equals("point")) {
-						System.out.print(reader.getLocalName() + " " + reader.getAttributeValue(0) + ": ");
+						el++;
+						System.out.print(reader.getLocalName() + " " + el + ": ");
 						isPoint = true;
 					} else if (reader.getLocalName().equals("x"))
 						isX = true;
