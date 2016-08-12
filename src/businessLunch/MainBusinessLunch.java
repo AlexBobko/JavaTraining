@@ -16,8 +16,9 @@ public class MainBusinessLunch {
 	public static void main(String[] args) {
 		// пример добавления в меню
 		mainMenu.addMenu("beer", new Dish("Пиво", "Прокисшее пиво", (float) 8.1));
-
+		//расширенный обед
 		OrderBuilder order = createExtendedLunch();
+		//стандартный обед
 		// OrderBuilder order = createStandardLunch();
 		// перебор и распечатка обеда
 		Iterator<Dish> iter = order.getLunch().iterator();
