@@ -1,0 +1,50 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="flowers">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="flower" maxOccurs="unbounded"
+					minOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="name" />
+							<xs:element name="soil">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="подзолистая" />
+										<xs:enumeration value="грунтовая" />
+										<xs:enumeration value="дерново-подзолистая" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element type="xs:string" name="origin" />
+							<xs:element name="visualParameters">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:string" name="stemColor" />
+										<xs:element type="xs:string" name="stemSize" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="growingTips">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:short" name="temperature" />
+										<xs:element type="xs:short" name="watering" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="multiplying">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="черенками" />
+										<xs:enumeration value="семенами" />
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

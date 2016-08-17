@@ -1,7 +1,5 @@
 package flowerGirl;
 
-import java.util.Comparator;
-
 /** Цветок, абстрактный
  * */
 abstract public class Flower{

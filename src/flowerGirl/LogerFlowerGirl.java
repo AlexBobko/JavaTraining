@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class LogerFlowerGirl {
 	private static volatile LogerFlowerGirl log;
